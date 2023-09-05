@@ -6,5 +6,5 @@ for i in range(122, 96, -1):
         char = chr(i - 32)
     else:
         char = chr(i)
-    upper = not(upper)
+    upper = not (upper)
     print("{}".format(char), end="")
