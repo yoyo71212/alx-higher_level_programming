@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def uppercase(str):
     if len(str) <= 0:
-        print("".format, end="\n")
+        print("".format(), end="\n")
         return
     for i in range(len(str)):
         char = str[i]
