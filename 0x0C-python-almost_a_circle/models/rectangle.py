@@ -70,7 +70,10 @@ class Rectangle(Base):
 
     def display(self):
         """ Method to display the Rectangle """
-        for i in range(self.height):
-            for j in range(self.width):
-                print('#', end='')
-            print()
+        res = '\n' * self.y + \
+                ((' ' * self.x) + ('#' * self.width) + '\n') * self.height
+        print(res, end='')
+
+    def __str__(self):
+        return ('[{}] ({}) {}/{} - {}/{}'). \
+                format(type(self).__name__, self.id, self.x, self.y, self.width, self.height)
