@@ -71,14 +71,17 @@ class Rectangle(Base):
     def display(self):
         """ Method to display the Rectangle """
         res = '\n' * self.y + \
-                ((' ' * self.x) + ('#' * self.width) + '\n') * self.height
+            ((' ' * self.x) + ('#' * self.width) + '\n') * self.height
         print(res, end='')
 
     def __str__(self):
+        """ Returns a string of the Rectangle's information """
         return ('[{}] ({}) {}/{} - {}/{}'). \
-                format(type(self).__name__, self.id, self.x, self.y, self.width, self.height)
+                format(type(self).__name__, self.id,
+                       self.x, self.y, self.width, self.height)
 
     def __update(self, id=None, width=None, height=None, x=None, y=None):
+        """ Method that handles updating the Rectangle """
         if id:
             self.id = id
         if width:
@@ -91,6 +94,7 @@ class Rectangle(Base):
             self.y = y
 
     def update(self, *args, **kwargs):
+        """ Method to update the Rectangle """
         if args:
             self.__update(*args)
         elif kwargs:
