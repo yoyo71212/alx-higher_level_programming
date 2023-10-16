@@ -41,3 +41,19 @@ class Base:
             return loads(json_string)
         else:
             return []
+
+    @classmethod
+    def create(cls, **dictionary):
+        """ Returns an instance with all attributes already set """
+        from models.square import Square
+        from models.rectangle import Rectangle
+
+        if cls is Rectangle:
+            res = Rectangle(1, 1)
+        elif cls is Square:
+            res = Square(1)
+        else:
+            res = None
+
+        res.update(dictionary)
+        return res
