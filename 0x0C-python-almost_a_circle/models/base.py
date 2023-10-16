@@ -55,5 +55,5 @@ class Base:
         else:
             res = None
 
-        res.update(dictionary)
+        res.update(**dictionary)
         return res
