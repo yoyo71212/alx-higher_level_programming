@@ -66,6 +66,7 @@ class Base:
         f = "{}.json".format(cls.__name__)
         if path.isfile(f):
             with open(f, "r", encoding="utf-8") as file:
-                return [cls.create(**d) for d in cls.from_json_string(file.read())]
+                return [cls.create(**d)
+                        for d in cls.from_json_string(file.read())]
         else:
             return []
