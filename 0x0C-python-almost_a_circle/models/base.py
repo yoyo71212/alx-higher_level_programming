@@ -2,6 +2,9 @@
 """ Base class """
 
 
+from json import dumps
+
+
 class Base:
     """ Base of OOP hierarchy"""
 
@@ -14,3 +17,9 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
+
+    def to_json_string(list_dictionaries):
+        if list_dictionaries:
+            return dumps(list_dictionaries)
+        else:
+            return "[]"
