@@ -3,7 +3,10 @@
 
 
 from json import dumps, loads
+from random import randrange
 import csv
+import turtle
+import time
 
 
 class Base:
@@ -112,3 +115,27 @@ class Base:
                 res.append(cls.create(**temp))
 
         return res
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        turtle.Screen().colormode(125)
+
+        for i in list_rectangles + list_squares:
+            t = turtle.Turtle()
+            t.color((randrange(255), randrange(255), randrange(255)))
+            t.pensize(1)
+            t.penup()
+            t.pendown()
+            t.setpos((i.x + t.pos()[0], i.y - t.pos(1)))
+            t.pensize(10)
+            t.foward(i.width)
+            t.left(90)
+            t.foward(i.height)
+            t.left(90)
+            t.foward(i.width)
+            t.left(90)
+            t.foward(i.height)
+            t.left(90)
+            t.end_fill()
+
+        time.sleep(5)
