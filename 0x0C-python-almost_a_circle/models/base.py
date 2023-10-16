@@ -80,14 +80,15 @@ class Base:
 
         if list_objs:
             if cls is Rectangle:
-                list_objs = [[o.id, o.width, o.height, o.x, o.y] for o in list_objs]
+                list_objs = [[o.id, o.width, o.height, o.x, o.y]
+                             for o in list_objs]
             else:
                 list_objs = [[o.id, o.size, o.x, o.y] for o in list_objs]
 
-            with open('{}.csv'.format(cls.__name__), "w", newline="", encoding="utf-8") as file:
+            with open('{}.csv'.format(cls.__name__), "w",
+                      newline="", encoding="utf-8") as file:
                 writer = csv.writer(file)
                 writer.writerows(list_objs)
-
 
     @classmethod
     def load_from_file_csv(cls):
@@ -96,14 +97,17 @@ class Base:
         from models.rectangle import Rectangle
 
         res = []
-        with open('{}.csv'.format(cls.__name__), "r", newline="", encoding="utf-8") as file:
+        with open('{}.csv'.format(cls.__name__), "r",
+                  newline="", encoding="utf-8") as file:
             reader = csv.reader(file)
             for row in reader:
                 row = [int(r) for r in row]
                 if cls is Rectangle:
-                    temp = {"id": row[0], "width": row[1], "height": row[2], "x": row[3], "y": row[4]}
+                    temp = {"id": row[0], "width": row[1],
+                            "height": row[2], "x": row[3], "y": row[4]}
                 else:
-                    temp = {"id": row[0], "size": row[1], "x": row[2], "y": row[3]}
+                    temp = {"id": row[0], "size": row[1],
+                            "x": row[2], "y": row[3]}
 
                 res.append(cls.create(**temp))
 
