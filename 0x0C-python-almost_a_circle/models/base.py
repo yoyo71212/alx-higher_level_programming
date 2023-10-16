@@ -2,7 +2,7 @@
 """ Base class """
 
 
-from json import dumps
+from json import dumps, loads
 
 
 class Base:
@@ -20,7 +20,7 @@ class Base:
 
     def to_json_string(list_dictionaries):
         """ Returns the JSON string representation of list_dictionaries """
-        if not list_dictionaries or list_dictionaries is None:
-            return "[]"
-        else:
+        if list_dictionaries:
             return dumps(list_dictionaries)
+        else:
+            return "[]"
