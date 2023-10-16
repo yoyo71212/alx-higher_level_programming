@@ -27,3 +27,21 @@ class Square(Rectangle):
     def size(self, size):
         self.width = size
         self.height = size
+
+    def __update(self, id=None, size=None, x=None, y=None):
+        """ Method that handles updating the Square """
+        if id:
+            self.id = id
+        if size:
+            self.size = size
+        if x:
+            self.x = x
+        if y:
+            self.y = y
+
+    def update(self, *args, **kwargs):
+        """ Method to update the Square """
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
