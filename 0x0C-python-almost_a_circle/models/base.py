@@ -3,6 +3,10 @@
 
 
 from json import dumps, loads
+from random import randrange
+import csv
+import turtle
+import time
 
 
 class Base:
@@ -70,3 +74,68 @@ class Base:
                         for d in cls.from_json_string(file.read())]
         else:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ Saves the object to a csv (Serializes ) """
+        from models.square import Square
+        from models.rectangle import Rectangle
+
+        if list_objs:
+            if cls is Rectangle:
+                list_objs = [[o.id, o.width, o.height, o.x, o.y]
+                             for o in list_objs]
+            else:
+                list_objs = [[o.id, o.size, o.x, o.y] for o in list_objs]
+
+            with open('{}.csv'.format(cls.__name__), "w",
+                      newline="", encoding="utf-8") as file:
+                writer = csv.writer(file)
+                writer.writerows(list_objs)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Loads the object from a csv (deserializes) """
+        from models.square import Square
+        from models.rectangle import Rectangle
+
+        res = []
+        with open('{}.csv'.format(cls.__name__), "r",
+                  newline="", encoding="utf-8") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                row = [int(r) for r in row]
+                if cls is Rectangle:
+                    temp = {"id": row[0], "width": row[1],
+                            "height": row[2], "x": row[3], "y": row[4]}
+                else:
+                    temp = {"id": row[0], "size": row[1],
+                            "x": row[2], "y": row[3]}
+
+                res.append(cls.create(**temp))
+
+        return res
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        turtle.Screen().colormode(125)
+
+        for i in list_rectangles + list_squares:
+            t = turtle.Turtle()
+            t.color((randrange(255), randrange(255), randrange(255)))
+            t.pensize(1)
+            t.penup()
+            t.pendown()
+            t.setpos((i.x + t.pos()[0], i.y - t.pos(1)))
+            t.pensize(10)
+            t.foward(i.width)
+            t.left(90)
+            t.foward(i.height)
+            t.left(90)
+            t.foward(i.width)
+            t.left(90)
+            t.foward(i.height)
+            t.left(90)
+            t.end_fill()
+
+        time.sleep(5)
