@@ -58,7 +58,7 @@ class Rectangle:
     def __str__(self):
         """ Prints the Rectangle with the character '#' """
         if self.__width and self.__height:
-            return (((str(self.print_symbol) * self.__width) + '\n') \
+            return (((str(self.print_symbol) * self.__width) + '\n')
                     * self.__height)[:-1]
         return ''
 
