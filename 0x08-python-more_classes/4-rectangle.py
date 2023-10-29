@@ -59,5 +59,5 @@ class Rectangle:
         return res
 
     def __repr__(self):
-        """ Returns a string representation of the Rectangle to be able to recreate a new instance """
+        """ Return a string representation of the Rectangle for recreation """
         return "Rectangle({:d}, {:d})".format(self.__width, self.__height)
